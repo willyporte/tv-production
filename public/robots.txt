@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /imgs/
+Disallow: /css/
+Disallow: /web.config
+

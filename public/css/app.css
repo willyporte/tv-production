@@ -1,0 +1,16 @@
+body {
+    /* font-family: 'Lato'; */
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    color: darkslategrey;
+    font-size: 18px;
+    background-color: lightgrey;
+}
+input[type="text"], input[type="password"] {
+    font-size: 18px;
+}
+.fa-btn {
+    margin-right: 6px;
+}
+@-moz-document url-prefix() {
+    fieldset { display: table-cell; }
+}
