@@ -29,7 +29,7 @@ class EditTvRequest extends Request
          */
 
         return [
-            'panel' => 'required|min:3',
+            'panel' => 'required_if:status,unmonted|min:3',
             'available' => 'required',
         ];
     }
@@ -40,7 +40,7 @@ class EditTvRequest extends Request
     public function messages()
     {
         return [
-            'panel.required' => 'Inserisci un pannello!',
+            'panel.required_if' => 'RICHIESTO! quando la TV è smontata',
             'panel.min' => 'Almeno 3 caratteri per il pannello!'
         ];
     }

@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Requests\CreateTvRequest;
 use App\Http\Requests\EditTvRequest;
 use Illuminate\Support\Facades\Session;
+use Intervention\Image\Facades\Image;
 
 class TvController extends Controller
 {
@@ -41,11 +42,89 @@ class TvController extends Controller
      */
     public function store(CreateTvRequest $request)
     {
-        $data = $request->all();
-        $tv = new Tv($data);
+        if(trim($request->file('image_file')) <> '') {
+            // imgs
+            $image_extension = $request->file('image_file')->getClientOriginalExtension();
+            $image_name = time() . '.' . $image_extension;
+            $image_thumbnail = 'thumb-'.$image_name;
+            // paths
+            $image_path = '/tv-images/';
+            $image_thumbnail_path = '/tv-images/thumbnails/';
+        }
+        else {
+            $image_name = '';
+            $image_path = '';
+            $image_thumbnail = '';
+            $image_thumbnail_path = '';
+        }
+
+        $tv = new Tv([
+            'brand' => $request->get('brand'),
+            'panel' => $request->get('panel'),
+            'available' => $request->get('available'),
+            'panel_place' => $request->get('panel_place'),
+            'main' => $request->get('main'),
+            'main_nr' => $request->get('main_nr'),
+            'inverter' => $request->get('inverter'),
+            'inverter_nr' => $request->get('inverter_nr'),
+            'power_supply' => $request->get('power_supply'),
+            'power_supply_nr' => $request->get('power_supply_nr'),
+            'power_supply_alt' => $request->get('power_supply_alt'),
+            'power_supply_alt_nr' => $request->get('power_supply_alt_nr'),
+            't_con' => $request->get('t_con'),
+            't_con_nr' => $request->get('t_con_nr'),
+            'mod_tv' => $request->get('mod_tv'),
+            'note' => $request->get('note'),
+            'status' => $request->get('status'),
+            'image_name' => $image_name,
+            'image_path' => $image_path,
+            'image_thumbnail' => $image_thumbnail,
+            'image_thumbnail_path' => $image_thumbnail_path
+        ]);
+        
         $tv->save();
 
-        Session::flash('message','Tv: '.$data['panel']. ' '. $data['brand'].' correttamente inserito.');
+        if(trim($request->file('image_file')) <> '') {
+            $file = $request->file('image_file');
+            $imageFile = Image::make($file->getRealPath());
+            // cambio orientacion segun Exif propiedad "Orientation"
+            $data = $imageFile->exif();
+            if(isset($data['Orientation'])) {
+                $orientation = $data['Orientation'];
+                switch ($orientation) {
+                    case 3:
+                        $imageFile = $imageFile->rotate(180);
+                        break;
+                    case 6:
+                        $imageFile = $imageFile->rotate(-90);
+                        break;
+                    case 8:
+                        $imageFile = $imageFile->rotate(90);
+                        break;
+                }
+            }
+            $w = $imageFile->width();
+            $h = $imageFile->height();
+            // constraint to with 800px max or height 800px max
+            if( $w > $h ) {
+                $imageFile->resize(800, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                });
+            }
+            else {
+                $imageFile->resize(null, 800, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                });
+            }
+            $imageFile->save(public_path().$image_path.$image_name)
+                    ->orientate()
+                    ->resize(150,150)
+                    ->save(public_path().$image_thumbnail_path.$image_thumbnail);
+        }
+
+        Session::flash('message','Tv: '.$tv->panel. ' '. $tv->brand.' correttamente inserito.');
         Session::flash('flash_type','alert-success');
 
         return redirect()->route('tv.index');
@@ -87,7 +166,109 @@ class TvController extends Controller
     public function update(EditTvRequest $request, $id)
     {
         $tv = Tv::findOrFail($id);
-        $tv->fill($request->all());
+
+        // imgs
+        if(trim($request->file('image_file')) <> '') {
+   
+            $image_extension = $request->file('image_file')->getClientOriginalExtension();
+            $image_name = time() . '.' . $image_extension;
+            $image_thumbnail = 'thumb-'.$image_name;
+            // paths
+            $image_path = '/tv-images/';
+            $image_thumbnail_path = '/tv-images/thumbnails/';
+
+            ///
+
+            $file = $request->file('image_file');
+            $imageFile = Image::make($file->getRealPath());
+            // cambio orientacion segun Exif propiedad "Orientation"
+            $data = $imageFile->exif();
+            if(isset($data['Orientation'])) {
+                $orientation = $data['Orientation'];
+                switch ($orientation) {
+                    case 3:
+                        $imageFile = $imageFile->rotate(180);
+                        break;
+                    case 6:
+                        $imageFile = $imageFile->rotate(-90);
+                        break;
+                    case 8:
+                        $imageFile = $imageFile->rotate(90);
+                        break;
+                }
+            }
+            $w = $imageFile->width();
+            $h = $imageFile->height();
+            // constraint to with 800px max or height 800px max
+            if( $w > $h ) {
+                $imageFile->resize(800, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                });
+            }
+            else {
+                $imageFile->resize(null, 800, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                });
+            }
+            $imageFile->save(public_path().$image_path.$image_name)
+                    ->orientate()
+                    ->resize(150,150)
+                    ->save(public_path().$image_thumbnail_path.$image_thumbnail);
+
+            // borrar imagen vieja
+            //unlink(public_path().$tv->$image_path.$tv->$image_name);
+            //unlink(public_path().$tv->$image_thumbnail_path.$tv->$image_thumbnail);
+
+            $tv->fill([
+                'brand' => $request->get('brand'),
+                'panel' => $request->get('panel'),
+                'available' => $request->get('available'),
+                'panel_place' => $request->get('panel_place'),
+                'main' => $request->get('main'),
+                'main_nr' => $request->get('main_nr'),
+                'inverter' => $request->get('inverter'),
+                'inverter_nr' => $request->get('inverter_nr'),
+                'power_supply' => $request->get('power_supply'),
+                'power_supply_nr' => $request->get('power_supply_nr'),
+                'power_supply_alt' => $request->get('power_supply_alt'),
+                'power_supply_alt_nr' => $request->get('power_supply_alt_nr'),
+                't_con' => $request->get('t_con'),
+                't_con_nr' => $request->get('t_con_nr'),
+                'mod_tv' => $request->get('mod_tv'),
+                'note' => $request->get('note'),
+                'status' => $request->get('status'),
+                'image_name' => $image_name,
+                'image_path' => $image_path,
+                'image_thumbnail' => $image_thumbnail,
+                'image_thumbnail_path' => $image_thumbnail_path
+            ]);        
+
+
+        }    
+        else {
+            $tv->fill([
+                'brand' => $request->get('brand'),
+                'panel' => $request->get('panel'),
+                'available' => $request->get('available'),
+                'panel_place' => $request->get('panel_place'),
+                'main' => $request->get('main'),
+                'main_nr' => $request->get('main_nr'),
+                'inverter' => $request->get('inverter'),
+                'inverter_nr' => $request->get('inverter_nr'),
+                'power_supply' => $request->get('power_supply'),
+                'power_supply_nr' => $request->get('power_supply_nr'),
+                'power_supply_alt' => $request->get('power_supply_alt'),
+                'power_supply_alt_nr' => $request->get('power_supply_alt_nr'),
+                't_con' => $request->get('t_con'),
+                't_con_nr' => $request->get('t_con_nr'),
+                'mod_tv' => $request->get('mod_tv'),
+                'note' => $request->get('note'),
+                'status' => $request->get('status'),
+            ]);  
+        }
+
         $tv->save();
 
         Session::flash('message','Tv:  '.$request->panel.' '.$request->brand.' Aggiornato!');

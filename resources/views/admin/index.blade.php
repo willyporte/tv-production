@@ -18,10 +18,10 @@
                     </span>
                     <span class="pull-right">
                         <a class="btn btn-primary" href="{{ route('tv.create') }}" role="button" title="Crea nuovo Tv">
-                            <i class="fa fa-television"> Nuovo</i>
+                            <i class="fa fa-television"></i> Nuovo
                         </a>
                         <a class="btn btn-danger" href="{{ route('tv.excel') }}" role="button" title="Esporta Elenco Tv in Excel">
-                            <i class="fa fa-file-text-o"> Excel</i>
+                            <i class="fa fa-file-text-o"></i> Excel
                         </a>
                     </span>
                     <br><br>
@@ -59,7 +59,17 @@
                                             {{ $tv->panel }}
                                     </td>
                                     <td>{{ $tv->panel_place }}</td>
-                                    <td>{{ $tv->brand }}</td>
+                                    <td>
+                                        @if($tv->status == 'monted')
+                                            <i class="fa fa-wrench"></i>
+                                        @endif   
+                                        @if( $tv->image_name <> '')
+                                            <a href="{{ $tv->image_path.$tv->image_name }}" title="Informazione del Tv" target=_blank>
+                                                    <i class="fa fa-picture-o" aria-hidden="true"></i>
+                                            </a>
+                                         @endif     
+
+                                        {{ $tv->brand }}</td>
                                     <td>
                                         {{ $tv->mod_tv }}
                                     </td>

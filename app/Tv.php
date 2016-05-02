@@ -26,6 +26,11 @@ class Tv extends Model
         'mod_tv',
         'mod_tv_nr',
         'note',
+        'status',
+        'image_name',
+        'image_path',
+        'image_thumbnail',
+        'image_thumbnail_path'
     ];
 
     public static function filterAndPaginate($search)

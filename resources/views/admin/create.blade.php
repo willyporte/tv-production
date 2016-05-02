@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col-md-12">
 
                 {{-- Comennto porque muestro los errores campo por campo!
 
@@ -15,9 +15,11 @@
                     <div class="panel-heading">Creazione Nuovo TV</div>
 
                     <div class="panel-body">
-                        {!! Form::open(['route' => 'tv.store','method' => 'POST','class' => 'form-inline']) !!}
+                        {!! Form::open(['route' => 'tv.store','method' => 'POST', 'files' => true, 'class' => 'form-horizontal']) !!}
 
                             @include('admin.partials.fields')
+
+
                             <div class="form-group col-md-12">
                                 <button class="btn btn-danger" type="submit" class="col-md-12">
                                     <i class="fa fa-floppy-o"></i> Salva

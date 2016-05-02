@@ -3,13 +3,14 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col-md-12">
 
                 {{-- Comennto porque muestro los errores campo por campo!
 
                 @include('admin.partials.errors')
 
                 --}}
+  
 
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -17,7 +18,17 @@
                     </div>
 
                     <div class="panel-body">
-                        {!! Form::model($tv,['route' => ['tv.update', $tv->id], 'method' => 'PUT','class' => 'form-inline']) !!}
+
+                        @if( $tv->image_name <> '')
+                        <div align="center">
+                            <img class="img-responsive" src="{{ $tv->image_path.$tv->image_name }}" style="border: solid 1px #ccc">        
+                        </div> 
+                        <br>
+                        @endif     
+
+
+                        {!! Form::model($tv,['route' => ['tv.update', $tv->id], 'method' => 'PUT',
+                        'files' => true,'class' => 'form-horizontal']) !!}
 
                         @include('admin.partials.fields')
 

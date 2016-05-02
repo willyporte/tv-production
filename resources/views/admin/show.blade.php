@@ -19,6 +19,14 @@
                             <br>
                         <strong>Marca</strong>: {{ $tv->brand }} <br>
                         <strong>MOD_TV</strong>: {{ $tv->mod_tv }} <br>
+                        <strong>Stato</strong>:
+                        @if($tv->status == 'monted')
+                             <i class="fa fa-wrench"></i> Da Smontare
+                        @else
+                            Smontato
+                        @endif
+                        <br>        
+
                         <strong>Main</strong>: {{ $tv->main }}
                                 @if($tv->main_nr <> 0)
                                     <strong> Box: {{ $tv->main_nr }} </strong>
@@ -46,6 +54,14 @@
                                 <br>
                         <strong>Nota</strong>: {!! nl2br($tv->note) !!} <br>
                         <br>
+
+                        @if( $tv->image_name <> '')
+                        <div>
+                            <img class="img-responsive" src="{{ $tv->image_path.$tv->image_name }}" style="border: solid 1px #ccc">        
+                        </div> 
+                        <br>
+                        @endif
+
                         <a href="{{ route('tv.index') }}" class="btn btn-primary" role="button">Torna</a>
                         <br><br>
                         </div>
