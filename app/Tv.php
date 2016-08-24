@@ -37,7 +37,7 @@ class Tv extends Model
     {
 
         return TV::panel($search)
-            ->orderBy('panel','ASC')->paginate(10);
+            ->orderBy('available','DESC')->paginate(10);
     }
 
     public function scopePanel($query, $search) {

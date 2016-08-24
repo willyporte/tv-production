@@ -92,7 +92,8 @@
             {!! Form::text('main',null,['class' => 'form-control', 'placeholder' => 'MainBoard',
             'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => 'Main']) !!}
             {!! Form::label('main_nr','Box',['class' => 'control-label']) !!}
-            {!! Form::selectRange('main_nr', 1, 30, null,['class' => 'form-control', 'placeholder' => '']) !!} 
+            {!! Form::text('main_nr',null,['class' => 'form-control', 'size' => '2','placeholder' => '',
+                'data-toggle' => 'tooltip', 'title' => 'Numero']) !!} 
         </div>
     </div>
     <hr>
@@ -103,7 +104,8 @@
             {!! Form::text('inverter',null,['class' => 'form-control','placeholder' => 'Inverter',
                 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => 'Inverter']) !!}
             {!! Form::label('inverter_nr','Box',['class' => 'control-label']) !!}
-            {!! Form::selectRange('inverter_nr', 1, 30, null,['class' => 'form-control', 'placeholder' => '']) !!}
+            {!! Form::text('inverter_nr',null,['class' => 'form-control', 'size' => '2', 'placeholder' => '',
+                'data-toggle' => 'tooltip', 'title' => 'Numero']) !!}
         </div>
     </div>
     <hr>
@@ -114,7 +116,8 @@
             {!! Form::text('power_supply',null,['class' => 'form-control','placeholder' => 'Alimentatore',
             'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => 'Alimentatore']) !!}
             {!! Form::label('power_supply_nr','Box',['class' => 'control-label']) !!}
-            {!! Form::selectRange('power_supply_nr', 1, 30, null,['class' => 'form-control', 'placeholder' => '']) !!}
+            {!! Form::text('power_supply_nr',null,['class' => 'form-control', 'size' => '2', 'placeholder' => '',
+                'data-toggle' => 'tooltip', 'title' => 'Numero']) !!}
         </div>
     </div>
     <hr>
@@ -125,7 +128,8 @@
             {!! Form::text('power_supply_alt',null,['class' => 'form-control','placeholder' => 'Alimentatore Alt.',
                 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => 'Alimentatore Alt.']) !!}
             {!! Form::label('power_supply_alt_nr','Box',['class' => 'control-label']) !!}
-            {!! Form::selectRange('power_supply_alt_nr', 1, 30, null,['class' => 'form-control', 'placeholder' => '']) !!} 
+            {!! Form::text('power_supply_alt_nr',null,['class' => 'form-control', 'size' => '2', 'placeholder' => '',
+                'data-toggle' => 'tooltip', 'title' => 'Numero']) !!} 
         </div>
     </div>
     <hr>
@@ -136,7 +140,8 @@
             {!! Form::text('t_con',null,['class' => 'form-control','placeholder' => 'T_Con',
                 'data-toggle' => 'tooltip', 'data-placement' => 'top', 'title' => 'T_Con']) !!}
             {!! Form::label('t_con_nr','Box',['class' => 'control-label']) !!}
-            {!! Form::selectRange('t_con_nr', 1, 30, null,['class' => 'form-control', 'placeholder' => '']) !!}
+            {!! Form::text('t_con_nr',null,['class' => 'form-control', 'size' => '2', 'placeholder' => '',
+                'data-toggle' => 'tooltip', 'title' => 'Numero']) !!}
         </div>
     </div>
 </div>

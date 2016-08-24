@@ -29,96 +29,98 @@
 
                 <div class="panel-body">
                     @include('admin.partials.message')
-                    <table class="table table-striped table-bordered table-responsive">
-                        <thead>
-                            <th><span class="badge">{{ $tvs->total() }}</span> Pannello</th>                    
-                            <th>Posto Pannello</th>
-                            <th>Marca</th>
-                            <th>Modello</th>
-                            <th>Main</th>
-                            <th>Inverter</th>
-                            <th>Alim.</th>
-                            <th>Alim. Alt.</th>
-                            <th>T_Con</th>
-                            <th>Azioni</th>
-                        </thead>
-                        <tbody>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <th><span class="badge">{{ $tvs->total() }}</span> Pannello</th>                    
+                                {{-- <th>Posto Pannello</th> --}}
+                                <th>Marca</th>
+                                <th>Modello</th>
+                                <th>Main</th>
+                                <th>Inverter</th>
+                                <th>Alim.</th>
+                                <th>Alim. Alt.</th>
+                                <th>T_Con</th>
+                                <th>Azioni</th>
+                            </thead>
+                            <tbody>
 
-                            @foreach($tvs as $tv)
-                                <tr data-id="{{ $tv->id }}">
-                                    <td
-                                        @if( $tv->available )
-                                            class="alert alert-success"
-                                        @else
-                                            class="alert alert-danger"
-                                        @endif
-                                        >
-                                        @if( $tv->available )
-                                            <span class="badge">OK</span>
-                                        @endif 
-                                            {{ $tv->panel }}
-                                    </td>
-                                    <td>{{ $tv->panel_place }}</td>
-                                    <td>
-                                        @if($tv->status == 'monted')
-                                            <i class="fa fa-wrench"></i>
-                                        @endif   
-                                        @if( $tv->image_name <> '')
-                                            <a href="{{ $tv->image_path.$tv->image_name }}" title="Informazione del Tv" target=_blank>
-                                                    <i class="fa fa-picture-o" aria-hidden="true"></i>
+                                @foreach($tvs as $tv)
+                                    <tr data-id="{{ $tv->id }}">
+                                        <td
+                                            @if( $tv->available )
+                                                class="alert alert-success"
+                                            @else
+                                                class="alert alert-danger"
+                                            @endif
+                                            >
+                                            @if( $tv->available )
+                                                <span class="badge">OK</span>
+                                            @endif 
+                                                {{ $tv->panel }}
+                                        </td>
+                                        {{-- <td>{{ $tv->panel_place }}</td> --}}
+                                        <td>
+                                            @if($tv->status == 'monted')
+                                                <i class="fa fa-wrench"></i>
+                                            @endif   
+                                            @if( $tv->image_name <> '')
+                                                <a href="{{ $tv->image_path.$tv->image_name }}" title="Informazione del Tv" target=_blank>
+                                                        <i class="fa fa-picture-o" aria-hidden="true"></i>
+                                                </a>
+                                             @endif     
+
+                                            {{ $tv->brand }}</td>
+                                        <td>
+                                            {{ $tv->mod_tv }}
+                                        </td>
+                                        <td>
+                                            @if($tv->main_nr != 0)
+                                                <span class="badge">{{ $tv->main_nr }}</span>
+                                            @endif
+                                            {{ $tv->main }}
+                                        </td>
+                                        <td>
+                                            @if($tv->inverter_nr != 0)
+                                                <span class="badge">{{ $tv->inverter_nr }}</span>
+                                            @endif
+                                            {{ $tv->inverter }}
+                                        </td>
+                                        <td>
+                                            @if($tv->power_supply_nr != 0)
+                                                <span class="badge">{{ $tv->power_supply_nr }}</span>
+                                            @endif
+                                            {{ $tv->power_supply }}
+                                        </td>
+                                        <td>
+                                            @if($tv->power_supply_alt_nr != 0)
+                                                <span class="badge">{{ $tv->power_supply_alt_nr }}</span>
+                                            @endif
+                                            {{ $tv->power_supply_alt }}
+
+                                        </td>
+                                        <td>
+                                            @if($tv->t_con_nr != 0)
+                                                <span class="badge">{{ $tv->t_con_nr }}</span>
+                                            @endif
+                                            {{ $tv->t_con }}
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('tv.show', $tv->id) }}" title="Informazione del Tv">
+                                                <i class="fa fa-tv"></i>
                                             </a>
-                                         @endif     
-
-                                        {{ $tv->brand }}</td>
-                                    <td>
-                                        {{ $tv->mod_tv }}
-                                    </td>
-                                    <td>
-                                        @if($tv->main_nr != 0)
-                                            <span class="badge">{{ $tv->main_nr }}</span>
-                                        @endif
-                                        {{ $tv->main }}
-                                    </td>
-                                    <td>
-                                        @if($tv->inverter_nr != 0)
-                                            <span class="badge">{{ $tv->inverter_nr }}</span>
-                                        @endif
-                                        {{ $tv->inverter }}
-                                    </td>
-                                    <td>
-                                        @if($tv->power_supply_nr != 0)
-                                            <span class="badge">{{ $tv->power_supply_nr }}</span>
-                                        @endif
-                                        {{ $tv->power_supply }}
-                                    </td>
-                                    <td>
-                                        @if($tv->power_supply_alt_nr != 0)
-                                            <span class="badge">{{ $tv->power_supply_alt_nr }}</span>
-                                        @endif
-                                        {{ $tv->power_supply_alt }}
-
-                                    </td>
-                                    <td>
-                                        @if($tv->t_con_nr != 0)
-                                            <span class="badge">{{ $tv->t_con_nr }}</span>
-                                        @endif
-                                        {{ $tv->t_con }}
-                                    </td>
-                                    <td>
-                                        <a href="{{ route('tv.show', $tv->id) }}" title="Informazione del Tv">
-                                            <i class="fa fa-tv"></i>
-                                        </a>
-                                        <a href="{{ route('tv.edit', $tv->id) }}" title="Modifica Tv">
-                                            <i class="fa fa-pencil"></i>
-                                        </a>
-                                        <a href="#" title="Cancella Tv" class="btn-delete" role="button">
-                                            <i class="fa fa-btn fa-trash" style="color:#A00"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                                            <a href="{{ route('tv.edit', $tv->id) }}" title="Modifica Tv">
+                                                <i class="fa fa-pencil"></i>
+                                            </a>
+                                            <a href="#" title="Cancella Tv" class="btn-delete" role="button">
+                                                <i class="fa fa-btn fa-trash" style="color:#A00"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
 
                     {!! $tvs->appends(Request::all())->render() !!} 
 

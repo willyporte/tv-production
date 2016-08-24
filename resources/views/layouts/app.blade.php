@@ -18,11 +18,13 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    @yield('head')
+
 
 </head>
 <body id="app-layout">
 <nav class="navbar navbar-inverse">
-    <div class="container">
+    <div class="container-fluid">
         <div class="navbar-header">
             <!-- Collapsed Hamburger -->
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
@@ -44,6 +46,9 @@
             <ul class="nav navbar-nav">
                 @if(Auth::user())
                     <li><a href="{{ url('/tv') }}" role="button">Elenco Ricambi</a></li>
+                @else
+                    <li><a href="{{ url('/cerca') }}" role="button">Compatibilità</a></li>
+                    <li><a href="{{ url('/contatto') }}" role="button">Contattaci!</a></li>
                 @endif
             </ul>
 
@@ -63,25 +68,49 @@
                         </ul>
                     </li>
                 @endif
+                <li><i class="fa fa-cog fa-spin fa-fw"></i>Willy 2016</li>
             </ul>
         </div>
     </div>
 </nav>
 
-<div class="footer navbar-fixed-bottom text-right">
-    
-    <i class="fa fa-cog fa-spin fa-fw margin-bottom"></i>Willy 2016 &nbsp; &nbsp; 
-
-</div>
-
 @yield('content')
 
-        <!-- JavaScripts -->
+<div class="text-center" style="padding-right:15px">
+    <a href={{ url('http://www.elettronicalowcost.it') }} target=_blank>
+        <img src={{ asset('imgs/logoLC.png') }}
+    </a>
+    <!-- Histats.com  (div with counter) --><div id="histats_counter"></div>
+    <!-- Histats.com  START  (aync)-->
+    <script type="text/javascript">var _Hasync= _Hasync|| [];
+    _Hasync.push(['Histats.start', '1,3452208,4,601,110,30,00011000']);
+    _Hasync.push(['Histats.fasi', '1']);
+    _Hasync.push(['Histats.track_hits', '']);
+    (function() {
+    var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
+    hs.src = ('//s10.histats.com/js15_as.js');
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
+    })();</script>
+    <noscript><a href="http://www.histats.com" target="_blank"><img  src="http://sstatic1.histats.com/0.gif?3452208&101" alt="contatore accessi" border="0"></a></noscript>
+    <!-- Histats.com  END  -->
+</div>
+
+<!-- JavaScripts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.21/vue.js"></script>
 
 @yield('scripts')
+
+<script src="js/cookiechoices.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function(event) {
+    cookieChoices.showCookieConsentBar(
+        'Questo sito utilizza i cookie per migliorare servizi e esperienza dei clienti. Se decidi di continuare la navigazione consideriamo che accetti il loro uso.',
+        'Chiudi', 'Maggiori Informazioni', '/informativa');
+  });
+</script>
+
 </body>
 </html>

@@ -24,8 +24,9 @@
 |
 */
 Route::get('test', function(){
-    $tvs = App\Tv::all();
-    return view('tst',compact('tvs'));
+    $tvs = App\Tv::groupBy('mod_tv')->get();
+
+    return view('all-parts',compact('tvs'));
 });
 
 
@@ -55,4 +56,12 @@ Route::group(['middleware' => 'web'], function () {
         $tvs = App\Tv::all();
         return view('all-parts',compact('tvs'));
     });
+
+    Route::get('contatto','ContactController@showForm');
+    Route::post('contatto','ContactController@sendContactInfo');
+    Route::get('informativa',function(){
+        return view('informativa');
+    });
+    Route::get('cerca','ClientController@search');
+
 });

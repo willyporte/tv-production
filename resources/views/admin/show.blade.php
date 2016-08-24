@@ -47,7 +47,7 @@
                                     <strong> Box: {{ $tv->power_supply_alt_nr }} </strong>
                                 @endif        
                                 <br>
-                        <strong>T_Con</strong>: {{ $tv->t_com }}                         
+                        <strong>T_Con</strong>: {{ $tv->t_con }}                         
                                 @if($tv->t_con_nr <> 0)
                                     <strong> Box: {{ $tv->t_con_nr }} </strong>
                                 @endif        
