@@ -39,7 +39,7 @@
                                 <th>Main</th>
                                 <th>Inverter</th>
                                 <th>Alim.</th>
-                                <th>Alim. Alt.</th>
+                                {{-- <th>Alim. Alt.</th> --}}
                                 <th>T_Con</th>
                                 <th>Y-Sus</th>
                                 <th>Z-Sus</th>
@@ -96,6 +96,7 @@
                                             @endif
                                             {{ $tv->power_supply }}
                                         </td>
+                                        {{-- 
                                         <td>
                                             @if($tv->power_supply_alt_nr != 0)
                                                 <span class="badge">{{ $tv->power_supply_alt_nr }}</span>
@@ -103,6 +104,7 @@
                                             {{ $tv->power_supply_alt }}
 
                                         </td>
+                                        --}}
                                         <td>
                                             @if($tv->t_con_nr != 0)
                                                 <span class="badge">{{ $tv->t_con_nr }}</span>
