@@ -31,8 +31,12 @@
                                 <th>Main</th>
                                 <th>Inverter</th>
                                 <th>Alim.</th>
-                                <th>Alim. Alt.</th>
+                                {{-- <th>Alim. Alt.</th> --}}
                                 <th>T_Con</th>
+                                <th>Y-Sus</th>
+                                <th>Z-Sus</th>
+                                <th>Buff. Board</th> 
+                                <th>Signal</th> 
                             </thead>
                             <tbody>
 
@@ -60,12 +64,27 @@
                                         <td>
                                             {{ $tv->power_supply }}
                                         </td>
+                                        {{-- 
                                         <td>
                                             {{ $tv->power_supply_alt }}
                                         </td>
+                                        --}}
                                         <td>
                                             {{ $tv->t_con }}
                                         </td>
+                                        <td>
+                                            {{ $tv->y_sus }}
+                                        </td>
+                                        <td>
+                                            {{ $tv->z_sus }}
+                                        </td>
+                                        <td>
+                                            {{ $tv->buffer_board }}
+                                        </td>
+                                        <td>
+                                            {{ $tv->sgnl }}
+                                        </td>
+
                                     </tr>
                                 @endforeach
                             </tbody>
