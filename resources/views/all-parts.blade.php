@@ -28,7 +28,7 @@
 
                 <div style="font-size:18px;padding:0 10px;">
                     <h2>Marche</h2>
-                    <span v-for="ricambio in ricambi | filterBy search 'brand'">
+                    <span v-for="ricambio in marche | filterBy search 'brand'">
                         <span v-if="ricambio.brand != ''">
                             @{{ ricambio.brand }} &nbsp;
                         </span>
@@ -37,7 +37,7 @@
                     <hr>   
 
                     <h2>Modelli</h2>
-                    <span v-for="ricambio in ricambi | filterBy search.trim() 'mod_tv'">
+                    <span v-for="ricambio in modelli | filterBy search.trim() 'mod_tv'">
                         <span v-if="ricambio.mod_tv != ''">
                             @{{ ricambio.mod_tv }} &nbsp;
                         </span>
@@ -46,7 +46,7 @@
                     <hr>  
 
                     <h2>Pannelli</h2>
-                    <span v-for="ricambio in ricambi | filterBy search.trim() 'panel'">
+                    <span v-for="ricambio in panelli | filterBy search.trim() 'panel'">
                         <span v-if="ricambio.panel != ''">
                             @{{ ricambio.panel }} &nbsp;
                         </span>
@@ -55,7 +55,7 @@
                     <hr> 
 
                     <h2>MainBoard</h2>
-                    <span v-for="ricambio in ricambi | filterBy search.trim() 'main'">
+                    <span v-for="ricambio in mainboard | filterBy search.trim() 'main'">
                         <span v-if="ricambio.main != ''">
                             @{{ ricambio.main }} &nbsp;
                         </span>    
@@ -64,7 +64,7 @@
                     <hr>  
 
                     <h2>Inverters</h2>
-                    <span v-for="ricambio in ricambi | filterBy search.trim() 'inverter'">
+                    <span v-for="ricambio in inverters | filterBy search.trim() 'inverter'">
                         <span v-if="ricambio.inverter != ''">
                             @{{ ricambio.inverter }} &nbsp; 
                         </span>    
@@ -73,7 +73,7 @@
                     <hr> 
 
                     <h2>Alimentatori</h2>
-                    <span v-for="ricambio in ricambi | filterBy search.trim() 'power_supply'">
+                    <span v-for="ricambio in alimentatori | filterBy search.trim() 'power_supply'">
                         <span v-if="ricambio.power_supply != ''">
                             @{{ ricambio.power_supply }} &nbsp;
                         </span>
@@ -93,7 +93,7 @@
                     <hr> 
 
                     <h2>T_Con</h2>
-                    <span v-for="ricambio in ricambi | filterBy search.trim() 't_con'">
+                    <span v-for="ricambio in tcons | filterBy search.trim() 't_con'">
                         <span v-if="ricambio.t_con != ''">
                             @{{ ricambio.t_con }} &nbsp;
                         </span>
@@ -101,7 +101,7 @@
                     <hr>
 
                     <h2>Y-Sus</h2>
-                    <span v-for="ricambio in ricambi | filterBy search.trim() 'y_sus'">
+                    <span v-for="ricambio in ysus | filterBy search.trim() 'y_sus'">
                         <span v-if="ricambio.y_sus != ''">
                         @{{ ricambio.y_sus }} &nbsp;
                         </span>
@@ -109,7 +109,7 @@
                   
                     <hr> 
                     <h2>Z-Sus</h2>
-                    <span v-for="ricambio in ricambi | filterBy search.trim() 'z_sus'">
+                    <span v-for="ricambio in zsus | filterBy search.trim() 'z_sus'">
                         <span v-if="ricambio.z_sus != ''">
                         @{{ ricambio.z_sus }} &nbsp;
                         </span>
@@ -117,7 +117,7 @@
                   
                     <hr> 
                     <h2>Buffer Board</h2>
-                    <span v-for="ricambio in ricambi | filterBy search.trim() 'buffer_board'">
+                    <span v-for="ricambio in bufferboard | filterBy search.trim() 'buffer_board'">
                         <span v-if="ricambio.buffer_board != ''">
                         @{{ ricambio.buffer_board }} &nbsp;
                         </span>
@@ -125,7 +125,7 @@
                   
                     <hr> 
                     <h2>Signal</h2>
-                    <span v-for="ricambio in ricambi | filterBy search.trim() 'sgnl'">
+                    <span v-for="ricambio in signal | filterBy search.trim() 'sgnl'">
                         <span v-if="ricambio.sgnl != ''">
                         @{{ ricambio.sgnl }} &nbsp;
                         </span>
@@ -176,7 +176,17 @@
     new Vue({
       el: 'body',
       data: {
-        ricambi: {!! $tvs !!}
+        marche: {!! $brand !!},
+        modelli: {!! $mod_tv !!},
+        panelli: {!! $panel !!},
+        mainboard: {!! $main !!},
+        inverters: {!! $inverter !!},
+        alimentatori: {!! $power_supply !!},
+        tcons: {!! $t_con !!},
+        ysus: {!! $y_sus !!},
+        zsus: {!! $z_sus !!},
+        bufferboard: {!! $buffer_board !!},
+        signal: {!! $sgnl !!}
       },
       search: '',
     })
