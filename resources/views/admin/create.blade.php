@@ -15,10 +15,9 @@
                     <div class="panel-heading">Creazione Nuovo TV</div>
 
                     <div class="panel-body">
-                        {!! Form::open(['route' => 'tv.store','method' => 'POST', 'files' => true, 'class' => 'form-horizontal']) !!}
+                        {!! Form::open(['route' => 'tv.store','method' => 'POST', 'files' => true]) !!}
 
-                            @include('admin.partials.fields')
-
+                                @include('admin.partials.fields')
 
                             <div class="form-group col-md-12">
                                 <button class="btn btn-danger" type="submit" class="col-md-12">

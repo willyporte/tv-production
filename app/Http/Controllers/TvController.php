@@ -79,7 +79,15 @@ class TvController extends Controller
             'image_name' => $image_name,
             'image_path' => $image_path,
             'image_thumbnail' => $image_thumbnail,
-            'image_thumbnail_path' => $image_thumbnail_path
+            'image_thumbnail_path' => $image_thumbnail_path,
+            'y_sus' => $request->get('y_sus'),
+            'y_sus_nr' => $request->get('y_sus_nr'),
+            'z_sus' => $request->get('z_sus'),
+            'z_sus_nr' => $request->get('z_sus_nr'),
+            'buffer_board' => $request->get('buffer_board'),
+            'buffer_board_nr' => $request->get('buffer_board_nr'),
+            'sgnl' => $request->get('sgnl'),
+            'sgnl_nr' => $request->get('sgnl_nr')
         ]);
         
         $tv->save();
@@ -242,7 +250,15 @@ class TvController extends Controller
                 'image_name' => $image_name,
                 'image_path' => $image_path,
                 'image_thumbnail' => $image_thumbnail,
-                'image_thumbnail_path' => $image_thumbnail_path
+                'image_thumbnail_path' => $image_thumbnail_path,
+                'y_sus' => $request->get('y_sus'),
+                'y_sus_nr' => $request->get('y_sus_nr'),
+                'z_sus' => $request->get('z_sus'),
+                'z_sus_nr' => $request->get('z_sus_nr'),
+                'buffer_board' => $request->get('buffer_board'),
+                'buffer_board_nr' => $request->get('buffer_board_nr'),
+                'sgnl' => $request->get('sgnl'),
+                'sgnl_nr' => $request->get('sgnl_nr') 
             ]);        
 
 
@@ -266,6 +282,14 @@ class TvController extends Controller
                 'mod_tv' => $request->get('mod_tv'),
                 'note' => $request->get('note'),
                 'status' => $request->get('status'),
+                'y_sus' => $request->get('y_sus'),
+                'y_sus_nr' => $request->get('y_sus_nr'),
+                'z_sus' => $request->get('z_sus'),
+                'z_sus_nr' => $request->get('z_sus_nr'),
+                'buffer_board' => $request->get('buffer_board'),
+                'buffer_board_nr' => $request->get('buffer_board_nr'),
+                'sgnl' => $request->get('sgnl'),
+                'sgnl_nr' => $request->get('sgnl_nr')
             ]);  
         }
 

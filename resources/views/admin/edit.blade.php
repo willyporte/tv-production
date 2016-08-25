@@ -28,7 +28,7 @@
 
 
                         {!! Form::model($tv,['route' => ['tv.update', $tv->id], 'method' => 'PUT',
-                        'files' => true,'class' => 'form-horizontal']) !!}
+                        'files' => true]) !!}
 
                         @include('admin.partials.fields')
 

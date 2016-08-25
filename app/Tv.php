@@ -30,7 +30,15 @@ class Tv extends Model
         'image_name',
         'image_path',
         'image_thumbnail',
-        'image_thumbnail_path'
+        'image_thumbnail_path',
+        'y_sus',
+        'y_sus_nr',
+        'z_sus',
+        'z_sus_nr',
+        'buffer_board',
+        'buffer_board_nr',
+        'sgnl',
+        'sgnl_nr'
     ];
 
     public static function filterAndPaginate($search)
@@ -50,7 +58,11 @@ class Tv extends Model
                 ->orWhere('inverter','LIKE',"%$search%")
                 ->orWhere('power_supply','LIKE',"%$search%")
                 ->orWhere('t_con','LIKE',"%$search%")
-                ->orWhere('mod_tv','LIKE',"%$search%");
+                ->orWhere('mod_tv','LIKE',"%$search%")
+                ->orWhere('y_sus','LIKE',"%$search%")
+                ->orWhere('z_sus','LIKE',"%$search%")
+                ->orWhere('buffer_board','LIKE',"%$search%")
+                ->orWhere('sgnl','LIKE',"%$search%");
         }
     }
 
