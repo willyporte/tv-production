@@ -41,6 +41,10 @@
                                 <th>Alim.</th>
                                 <th>Alim. Alt.</th>
                                 <th>T_Con</th>
+                                <th>Y-Sus</th>
+                                <th>Z-Sus</th>
+                                <th>Buff. Board</th> 
+                                <th>Signal</th>       
                                 <th>Azioni</th>
                             </thead>
                             <tbody>
@@ -105,6 +109,32 @@
                                             @endif
                                             {{ $tv->t_con }}
                                         </td>
+
+                                        <td>
+                                            @if($tv->y_sus_nr != 0)
+                                                <span class="badge">{{ $tv->y_sus_nr }}</span>
+                                            @endif
+                                            {{ $tv->y_sus }}
+                                        </td>
+                                        <td>
+                                            @if($tv->z_sus_nr != 0)
+                                                <span class="badge">{{ $tv->z_sus_nr }}</span>
+                                            @endif
+                                            {{ $tv->z_sus }}
+                                        </td>
+                                        <td>
+                                            @if($tv->buffer_board_nr != 0)
+                                                <span class="badge">{{ $tv->buffer_board_nr }}</span>
+                                            @endif
+                                            {{ $tv->buffer_board }}
+                                        </td>
+                                        <td>
+                                            @if($tv->sgnl_nr != 0)
+                                                <span class="badge">{{ $tv->sgnl_nr }}</span>
+                                            @endif
+                                            {{ $tv->sgnl }}
+                                        </td>
+
                                         <td>
                                             <a href="{{ route('tv.show', $tv->id) }}" title="Informazione del Tv">
                                                 <i class="fa fa-tv"></i>
