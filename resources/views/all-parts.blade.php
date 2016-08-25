@@ -90,7 +90,6 @@
                   
                     <hr> 
                     --}}                 
-                    <hr> 
 
                     <h2>T_Con</h2>
                     <span v-for="ricambio in tcons | filterBy search.trim() 't_con'">
