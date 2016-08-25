@@ -24,8 +24,7 @@
 |
 */
 Route::get('test', function(){
-    $tvs = App\Tv::groupBy('mod_tv')->get();
-
+    $tvs = App\Tv::groupBy('brand')->distinct()->get();
     return view('all-parts',compact('tvs'));
 });
 
@@ -53,7 +52,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/riservato', 'HomeController@index');
 
     Route::get('/', function () {
-        $tvs = App\Tv::all();
+        $tvs = App\Tv::groupBy('brand')->distinct()->get();
         return view('all-parts',compact('tvs'));
     });
 
