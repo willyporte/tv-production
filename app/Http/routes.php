@@ -24,8 +24,15 @@
 |
 */
 Route::get('test', function(){
-    $tvs = App\Tv::groupBy('brand')->distinct()->get();
-    return view('all-parts',compact('tvs'));
+    $brand = App\Tv::groupBy('brand')->distinct('brand')->get();
+    $mod_tv = App\Tv::groupBy('mod_tv')->distinct('mod_tv')->get();
+    $panel = App\Tv::groupBy('panel')->distinct('panel')->get();
+    $main = App\Tv::groupBy('main')->distinct('main')->get();
+    $power_supply = App\Tv::groupBy('power_supply')->distinct('power_supply')->orderBy('power_supply')->get();
+    $inverter = App\Tv::groupBy('inverter')->distinct('inverter')->get();
+    $t_con = App\Tv::groupBy('t_con')->distinct('t_con')->get();
+
+    return view('all-parts',compact('brand','mod_tv','panel','main','power_supply','inverter','t_con'));
 });
 
 
@@ -52,7 +59,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/riservato', 'HomeController@index');
 
     Route::get('/', function () {
-        $tvs = App\Tv::groupBy('brand')->distinct()->get();
+        $tvs = App\Tv::all();
         return view('all-parts',compact('tvs'));
     });
 
