@@ -54,6 +54,11 @@ Route::group(['middleware' => 'web'], function () {
             'uses' => 'TvPdfController@modulo',
         ]);
 
+        Route::delete('delete-image/{id}',[
+            'as' => 'delete-image',
+            'uses' => 'TvController@deleteImage'
+        ]);
+
         Route::resource('tv', 'TvController');
 
     });

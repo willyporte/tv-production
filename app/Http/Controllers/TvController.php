@@ -328,4 +328,18 @@ class TvController extends Controller
         }
     }
 
+    public function deleteImage($id) {
+        $tv = Tv::findOrFail($id);
+        $tv->image_name = null;
+        $tv->image_path = null;
+        $tv->image_thumbnail = null;
+        $tv->image_thumbnail_path = null;
+        $tv->save();
+
+        Session::flash('message','Come richiesto ho cancellato l\'immagine!');
+        Session::flash('flash_type','alert-success');
+
+        return redirect()->route('tv.edit', $tv->id);
+    }
+
 }

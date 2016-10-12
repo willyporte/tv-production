@@ -65,6 +65,7 @@
                                         </td>
                                         {{-- <td>{{ $tv->panel_place }}</td> --}}
                                         <td>
+                                        {{ $tv->id }}
                                             @if($tv->status == 'monted')
                                                 <i class="fa fa-wrench"></i>
                                             @endif   

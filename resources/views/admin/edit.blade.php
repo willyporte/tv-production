@@ -19,9 +19,18 @@
 
                     <div class="panel-body">
 
+                        @include('admin.partials.message')
+
                         @if( $tv->image_name <> '')
                         <div align="center">
-                            <img class="img-responsive" src="{{ $tv->image_path.$tv->image_name }}" style="border: solid 1px #ccc">        
+                            <img class="img-responsive" src="{{ $tv->image_path.$tv->image_name }}" style="border: solid 1px #ccc">  
+                            <span class="pull-right">
+                            {!! Form::open(['route' => ['delete-image',$tv->id],'method' => 'delete'])!!}
+                                <button title="Cancella Immagine" name="delete-image" type="submit" class="btn btn-danger"
+                                onclick="return confirm('Sicuro di voler cancellare l\'immagine?')"
+                                ><i class="fa fa-trash" aria-hidden="true"></i> 
+                            {!! Form::close()!!}
+                            </span>     
                         </div> 
                         <br>
                         @endif     
